@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 from cereal import car
 from selfdrive.car.chrysler.values import CAR
+from selfdrive.car.chrysler.tunes import LatTunes, set_lat_tune
 from selfdrive.car import STD_CARGO_KG, scale_rot_inertia, scale_tire_stiffness, gen_empty_fingerprint, get_safety_config
 from selfdrive.car.interfaces import CarInterfaceBase
 
@@ -36,14 +37,8 @@ class CarInterface(CarInterfaceBase):
       ret.wheelbase = 3.67  # 2021 Ram 1500
       ret.steerRatio = 16.2  # just a guess
       ret.mass = 2493. + STD_CARGO_KG  # kg curb weight 2021 Ram 1500
-      MAX_TORQUE = 3.6
-      ret.lateralTuning.init('torque')
-      ret.lateralTuning.torque.useSteeringAngle = True
-      ret.lateralTuning.torque.kp = 2.0 / MAX_TORQUE
-      ret.lateralTuning.torque.kf = 1.0 / MAX_TORQUE
-      ret.lateralTuning.torque.ki = 0.5 / MAX_TORQUE
-      ret.lateralTuning.torque.friction = 0.001
-      ret.steerActuatorDelay = 0.16
+      set_lat_tune(ret.lateralTuning, LatTunes.TORQUE)
+      ret.steerActuatorDelay = 0.15
       ret.steerRateCost = 1.0
       ret.centerToFront = ret.wheelbase * 0.4 # just a guess
       ret.minSteerSpeed = 14.5

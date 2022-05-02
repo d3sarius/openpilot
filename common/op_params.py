@@ -216,9 +216,9 @@ class opParams:
 
                         SHOW_RATE_PARAMS: Param(False, [bool], live=True),
                         ENABLE_RATE_PARAMS: Param(False, [bool], live=True, depends_on=SHOW_RATE_PARAMS),
-                        STOCK_DELTA_UP: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
-                        STOCK_DELTA_DOWN: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
-                        STOCK_STEER_MAX: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
+                        STOCK_DELTA_UP: Param(238, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
+                        STOCK_DELTA_DOWN: Param(238, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
+                        STOCK_STEER_MAX: Param(238, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
 		                  	STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
 }
 

@@ -8,7 +8,7 @@ class LatTunes(Enum):
   PID_B = 3
 
   ###### LAT ######
-  def set_lat_tune(tune, name, MAX_LAT_ACCEL=3.5, FRICTION=.001):
+def set_lat_tune(tune, name, MAX_LAT_ACCEL=3.5, FRICTION=.001):
     if name == LatTunes.TORQUE:
       tune.init('torque')
       tune.torque.useSteeringAngle = True

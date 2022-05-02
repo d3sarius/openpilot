@@ -209,7 +209,7 @@ class opParams:
                         },
                         SHOW_LAT_PID: Param(False, [bool], live=True),
                         LAT_KP_BP: Param([0., 35.,], [list, float, int], live=True, depends_on=SHOW_LAT_PID),
-                        LAT_KP_V: Param([0.28, 0.28], [list, float, int], live=Truedepends_on=SHOW_LAT_PID),
+                        LAT_KP_V: Param([0.28, 0.28], [list, float, int], live=True, depends_on=SHOW_LAT_PID),
                         LAT_KI_BP: Param([0.,35], [list, float, int], live=True, depends_on=SHOW_LAT_PID),
                         LAT_KI_V: Param([0.06, 0.06], [list, float, int], live=True, depends_on=SHOW_LAT_PID),
                         LAT_KF: Param(6e-6, VT.number, live=True),

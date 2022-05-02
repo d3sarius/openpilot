@@ -219,7 +219,7 @@ class opParams:
                         STOCK_DELTA_UP: Param(238, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
                         STOCK_DELTA_DOWN: Param(238, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
                         STOCK_STEER_MAX: Param(238, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
-		                  	STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
+		                STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
 }
 
     self._params_file = '/data/op_params.json'
@@ -370,6 +370,7 @@ LAT_KI_BP = 'lat_ki_bp'
 LAT_KI_V = 'lat_ki_v'
 LAT_KF = 'lat_kf'
 
+SHOW_LAT_PID = 'show_lat_pid'
 SHOW_RATE_PARAMS = 'show_rate_params'
 ENABLE_RATE_PARAMS = 'enable_rate_params'
 STOCK_DELTA_UP = 'stock_delta_up'

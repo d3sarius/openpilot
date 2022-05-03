@@ -47,13 +47,13 @@ class opParams:
                 "live": True,
             },
             "MAX_ACCEL": {
-                "default": 1.6,
+                "default": 3.5,
                 "clip": [0., 4.],
                 "allowed_types": [float],
                 "live": True,
             },
             "FRICTION": {
-                "default": 0.133,
+                "default": 0.001,
                 "clip": [0., 1.],
                 "allowed_types": [float],
                 "live": True,

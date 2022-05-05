@@ -1,16 +1,27 @@
 import numpy as np
 from numbers import Number
-from common.op_params import opParams
 
+from common.op_params import opParams
 from common.numpy_fast import clip, interp
 
 
 class PIDController():
-  def __init__(self, k_p, k_i, k_f=0., k_d=0., pos_limit=1e308, neg_limit=-1e308, rate=100):
-    self._k_p = k_p
-    self._k_i = k_i
-    self._k_d = k_d
-    self.k_f = k_f   # feedforward gain
+  def __init__(self,  k_p, k_i, k_f=0., k_d=0., pos_limit=1e308, neg_limit=-1e308, rate=100, isLateral=False, OP=None):
+    self.is_lateral = isLateral
+    if OP is None:
+      OP = opParams()
+    self.op_params = OP
+    if isLateral:
+      self.pidList = [k_p,k_i,k_d,k_f]
+      self._k_p = (self.op_params.get(k_p[0]), self.op_params.get(k_p[1]))  # proportional gain
+      self._k_i = (self.op_params.get(k_i[0]), self.op_params.get(k_i[1]))
+      self._k_d = (self.op_params.get(k_d[0]), self.op_params.get(k_d[1]))  # derivative gain
+      self.k_f = self.op_params.get(k_f)
+    else:
+      self._k_p = k_p
+      self._k_i = k_i
+      self._k_d = k_d
+      self.k_f = k_f
     if isinstance(self._k_p, Number):
       self._k_p = [[0], [self._k_p]]
     if isinstance(self._k_i, Number):
@@ -24,9 +35,14 @@ class PIDController():
     self.i_unwind_rate = 0.3 / rate
     self.i_rate = 1.0 / rate
     self.speed = 0.0
-    self.live_tune = opParams()
 
     self.reset()
+
+  def _update_params(self):
+    self._k_p = (self.op_params.get(self.pidList[0][0]), self.op_params.get(self.pidList[0][1]))
+    self._k_i = (self.op_params.get(self.pidList[1][0]), self.op_params.get(self.pidList[1][1]))
+    self._k_d = (self.op_params.get(self.pidList[2][0]), self.op_params.get(self.pidList[2][1]))
+    self.k_f = self.op_params.get(self.pidList[3])
 
   @property
   def k_p(self):
@@ -52,6 +68,9 @@ class PIDController():
     self.control = 0
 
   def update(self, error, error_rate=0.0, speed=0.0, override=False, feedforward=0., freeze_integrator=False):
+    if(self.is_lateral):
+      self._update_params()
+
     self.speed = speed
 
     self.p = float(error) * self.k_p
@@ -75,20 +94,3 @@ class PIDController():
 
     self.control = clip(control, self.neg_limit, self.pos_limit)
     return self.control
-
-class LatPIDController(PIDController):
-   @property
-   def k_p(self):
-     return self.live_tune.get('P') / self.live_tune.get('MAX_ACCEL')
-
-   @property
-   def k_i(self):
-     return self.live_tune.get('I') / self.live_tune.get('MAX_ACCEL')
-
-   @property
-   def k_d(self):
-     return self.live_tune.get('D') / self.live_tune.get('MAX_ACCEL')
-
-   @property
-   def k_f(self):
-     return self.live_tune.get('F') / self.live_tune.get('MAX_ACCEL')

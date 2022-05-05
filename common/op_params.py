@@ -171,13 +171,14 @@ class opParams:
                         indi_actuator_effectiveness: Param(1.0, VT.number, live=True),
                         MAX_TORQUE: Param(3.6, VT.number, live=True),
                         FRICTION: Param(0.001, VT.number, live=True),
+                        STEER_RATE_COST: Param(1.0, VT.number, live=True),
                         STEER_ACT_DELAY: Param(0.16, VT.number, live=True),
                         SHOW_RATE_PARAMS: Param(False, [bool], live=True),
                         ENABLE_RATE_PARAMS: Param(False, [bool], live=True, depends_on=SHOW_RATE_PARAMS),
                         STOCK_DELTA_UP: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
                         STOCK_DELTA_DOWN: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
                         STOCK_STEER_MAX: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
-		                  	STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
+		        STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
 }
 
     self._params_file = '/data/op_params.json'
@@ -339,5 +340,6 @@ ENABLE_RATE_PARAMS = 'enable_rate_params'
 STOCK_DELTA_UP = 'stock_delta_up'
 STOCK_DELTA_DOWN = 'stock_delta_down'
 STOCK_STEER_MAX = 'stock_steer_max'
+STEER_RATE_COST = 'steer_rate_cost'
 STEER_ACT_DELAY = 'steer_act_delay'
 STEER_RATIO = 'steer ratio'

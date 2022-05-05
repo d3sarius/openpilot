@@ -165,17 +165,10 @@ class opParams:
                         LAT_KI_BP: Param([0.,35], [list, float, int], live=True),
                         LAT_KI_V: Param([0.06, 0.06], [list, float, int], live=True),
                         LAT_KF: Param(6e-6, VT.number, live=True),
-<<<<<<< HEAD
                         indi_inner_loop: Param(4.0, VT.number, live=True),
                         indi_outer_loop: Param(3.0, VT.number, live=True),
                         indi_time_constant: Param(1.0, VT.number, live=True),
                         indi_actuator_effectiveness: Param(1.0, VT.number, live=True),
-=======
-                        indi_inner_loop: Param(4.0, [list, float, int], live=True),
-                        indi_outer_loop: Param(3.0, [list, float, int], live=True),
-                        indi_time_constant: Param(1.0, [list, float, int], live=True),
-                        indi_actuator_effectiveness: Param(1.0, [list, float, int], live=True),
->>>>>>> 559810f79a5ef30ff635d879f6789b43c5ed7b7b
                         MAX_TORQUE: Param(3.6, VT.number, live=True),
                         FRICTION: Param(0.001, VT.number, live=True),
                         STEER_ACT_DELAY: Param(0.16, VT.number, live=True),

@@ -165,20 +165,13 @@ class opParams:
                         LAT_KI_BP: Param([0.,35], [list, float, int], live=True),
                         LAT_KI_V: Param([0.06, 0.06], [list, float, int], live=True),
                         LAT_KF: Param(6e-6, VT.number, live=True),
-                        indi_inner_loop: Param(4.0, VT.number, live=True),
-                        indi_outer_loop: Param(3.0, VT.number, live=True),
-                        indi_time_constant: Param(1.0, VT.number, live=True),
-                        indi_actuator_effectiveness: Param(1.0, VT.number, live=True),
-                        MAX_TORQUE: Param(3.6, VT.number, live=True),
-                        FRICTION: Param(0.001, VT.number, live=True),
-                        STEER_RATE_COST: Param(1.0, VT.number, live=True),
-                        STEER_ACT_DELAY: Param(0.16, VT.number, live=True),
+                        
                         SHOW_RATE_PARAMS: Param(False, [bool], live=True),
                         ENABLE_RATE_PARAMS: Param(False, [bool], live=True, depends_on=SHOW_RATE_PARAMS),
                         STOCK_DELTA_UP: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
                         STOCK_DELTA_DOWN: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
                         STOCK_STEER_MAX: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
-		        STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
+		                  	STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
 }
 
     self._params_file = '/data/op_params.json'
@@ -328,18 +321,11 @@ LAT_KP_V = 'lat_kp_v'
 LAT_KI_BP = 'lat_ki_bp'
 LAT_KI_V = 'lat_ki_v'
 LAT_KF = 'lat_kf'
-indi_inner_loop = 'indi_inner_loop'
-indi_outer_loop = 'indi_outer_loop'
-indi_time_constant = 'indi_time_constant'
-indi_actuator_effectiveness = 'indi_actuator_effectiveness'
-MAX_TORQUE = 'max_torque'
-FRICTION = 'friction'
 
 SHOW_RATE_PARAMS = 'show_rate_params'
 ENABLE_RATE_PARAMS = 'enable_rate_params'
 STOCK_DELTA_UP = 'stock_delta_up'
 STOCK_DELTA_DOWN = 'stock_delta_down'
 STOCK_STEER_MAX = 'stock_steer_max'
-STEER_RATE_COST = 'steer_rate_cost'
 STEER_ACT_DELAY = 'steer_act_delay'
 STEER_RATIO = 'steer ratio'

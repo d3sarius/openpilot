@@ -158,7 +158,7 @@ class opParams:
       Here's an example of a good fork_param entry:
       self.fork_params = {'camera_offset': Param(default=0.06, allowed_types=VT.number)}  # VT.number allows both floats and ints
     """
-  
+
     VT = ValueTypes()
     self.fork_params = {
                         LAT_KP_BP: Param([0., 35.,], [list, float, int], live=True),
@@ -168,13 +168,17 @@ class opParams:
                         LAT_KD_BP: Param([0.,35], [list, float, int], live=True),
                         LAT_KD_V: Param([0.06, 0.06], [list, float, int], live=True),
                         LAT_KF: Param(6e-6, VT.number, live=True),
-                        
+                        INDI_INNER_LOOP: Param(4.0, VT.number, live=True),
+                        INDI_OUTER_LOOP: Param(3.0, VT.number, live=True),
+                        INDI_TIME_CONSTANT: Param(1.0, VT.number, live=True),
+                        INDI_ACTUATOR_EFFECTIVENESS: Param(1.0, VT.number, live=True),
+
                         SHOW_RATE_PARAMS: Param(False, [bool], live=True),
                         ENABLE_RATE_PARAMS: Param(False, [bool], live=True, depends_on=SHOW_RATE_PARAMS),
-                        STOCK_DELTA_UP: Param(12, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
-                        STOCK_DELTA_DOWN: Param(12, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
-                        STOCK_STEER_MAX: Param(350, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
-		                  	STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
+                        STOCK_DELTA_UP: Param(12, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
+                        STOCK_DELTA_DOWN: Param(12, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
+                        STOCK_STEER_MAX: Param(350, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
+		                STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
 }
 
     self._params_file = '/data/op_params.json'
@@ -326,6 +330,10 @@ LAT_KI_V = 'lat_ki_v'
 LAT_KD_BP = 'lat_kd_bp'
 LAT_KD_V = 'lat_kd_v'
 LAT_KF = 'lat_kf'
+INDI_INNER_LOOP = 'indi_inner_loop'
+INDI_OUTER_LOOP = 'indi_outer_loop'
+INDI_TIME_CONSTANT = 'indi_time_constant'
+INDI_ACTUATOR_EFFECTIVENESS = 'indi_actuator_effectiveness'
 
 SHOW_RATE_PARAMS = 'show_rate_params'
 ENABLE_RATE_PARAMS = 'enable_rate_params'

@@ -45,8 +45,10 @@ class CarInterface(CarInterfaceBase):
 
       if lat_params.use_indi:
         set_lat_tune(ret.lateralTuning, LatTunes.INDI)
-      else:
+      elif lat_params.use_torque:
         set_lat_tune(ret.lateralTuning, LatTunes.TORQUE)
+      else:
+        set_lat_tune(ret.lateralTuning, LatTunes.PID_B)
 
     if candidate in (CAR.RAM_2500):
       ret.wheelbase = 3.785  # in meters

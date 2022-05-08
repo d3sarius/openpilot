@@ -4,8 +4,6 @@ from opendbc.can.parser import CANParser
 from opendbc.can.can_define import CANDefine
 from selfdrive.car.interfaces import CarStateBase
 from selfdrive.car.chrysler.values import DBC, STEER_THRESHOLD, CAR
-
-
 class CarState(CarStateBase):
   def __init__(self, CP):
     super().__init__(CP)
@@ -84,7 +82,7 @@ class CarState(CarStateBase):
       #ret.cruiseState.speedOffset = ret.cruiseState.speed - ret.vEgo
       self.dashboard = cp.vl["DAS_4"]
       self.steer_state = cp.vl["EPS_2"]["Torque_Overlay_Status"]
-      ret.steerFaultPermanent = self.steer_state == 4 or (self.steer_state == 0 and ret.vEgo > self.CP.minSteerSpeed)
+      ret.steerFaultPermanent  = self.steer_state == 4 or (self.steer_state == 0 and ret.vEgo > self.CP.minSteerSpeed)
 
     if self.CP.carFingerprint in (CAR.RAM_1500, CAR.RAM_2500):
       self.lkasbutton = (cp.vl["Center_Stack_2"]["LKAS_Button"] == 1)
@@ -102,7 +100,7 @@ class CarState(CarStateBase):
       self.autoHighBeamBit = cp_cam.vl["DAS_6"]['Auto_High_Beam'] #Auto High Beam isn't Located in this message on chrysler or jeep currently located in 729 message
       #ret.cruiseState.speedOffset = ret.cruiseState.speed - ret.vEgo
       self.dashboard = cp_cam.vl["DAS_4"]
-      ret.steerFaultPermanent = cp_cam.vl["LKAS_COMMAND"]["LKAS_ERROR"]==1 # TODO: Find another bit to determine the steer error
+      ret.steerFaultPermanent  = cp_cam.vl["LKAS_COMMAND"]["LKAS_ERROR"]==1 # TODO: Find another bit to determine the steer error
 
 
   # gear

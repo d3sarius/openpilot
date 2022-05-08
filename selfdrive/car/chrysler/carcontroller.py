@@ -33,6 +33,7 @@ class CarController():
     if self.prev_frame == frame:
       return car.CarControl.Actuators.new_message(), []
 
+    # *** compute control surfaces ***
     # steer torque
     new_steer = int(round(actuators.steer * CarControllerParams.STEER_MAX))
     apply_steer = apply_toyota_steer_torque_limits(new_steer, self.apply_steer_last,
@@ -59,7 +60,7 @@ class CarController():
     if self.gone_fast_yet_previous == True and self.gone_fast_yet == False:
         self.lkaslast_frame = self.lkasframe
 
-    #if CS.out.steerFaultPermanent is True: #possible fix for LKAS error Plan to test
+    #if CS.out.steerError is True: #possible fix for LKAS error Plan to test
     #  gone_fast_yet = False
 
     if (CS.out.steerFaultPermanent is True) or (CS.lkasdisabled is 1) or (self.lkasframe-self.lkaslast_frame<400):#If the LKAS Control bit is toggled too fast it can create and LKAS error

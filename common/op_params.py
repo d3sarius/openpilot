@@ -161,7 +161,7 @@ class opParams:
 
     VT = ValueTypes()
     self.fork_params = {
-                        'use_indi': Param(False, bool, 'Enable this to use INDI for lat', static=True),
+                        'use_indi': Param(False, bool, 'Enable this to use INDI for lat', live=False),
                         LAT_KP_BP: Param([0., 35.,], [list, float, int], live=True),
                         LAT_KP_V: Param([0.28, 0.28], [list, float, int], live=True),
                         LAT_KI_BP: Param([0.,35], [list, float, int], live=True),

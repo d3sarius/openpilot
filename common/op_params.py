@@ -163,18 +163,19 @@ class opParams:
     self.fork_params = {
                         'use_indi': Param(False, bool, 'Enable this to use INDI for lat', live=False),
                         'use_torque': Param(False, bool, 'Enable this to use torque for lat', live=False),
-                        LAT_KP_BP: Param([0., 25.,], [list, float, int], live=True),
-                        LAT_KP_V: Param([0.1, 0.12], [list, float, int], live=True),
-                        LAT_KI_BP: Param([0.,25], [list, float, int], live=True),
-                        LAT_KI_V: Param([0.0001, 0.0001], [list, float, int], live=True),
-                        LAT_KD_BP: Param([0.,25], [list, float, int], live=True),
-                        LAT_KD_V: Param([0.0, 0.00], [list, float, int], live=True),
-                        LAT_KF: Param(1.8e-5, VT.number, live=True),
-                        INDI_INNER_LOOP: Param(4.0, VT.number, live=True),
-                        INDI_OUTER_LOOP: Param(3.0, VT.number, live=True),
-                        INDI_TIME_CONSTANT: Param(1.0, VT.number, live=True),
-                        INDI_ACTUATOR_EFFECTIVENESS: Param(1.0, VT.number, live=True),
-
+                        SHOW_INDI_PARAMS: Param(False, [bool], live=True),
+                        SHOW_PID_PARAMS: Param(False, [bool], live=True),
+                        LAT_KP_BP: Param([0., 25.,], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
+                        LAT_KP_V: Param([0.1, 0.12], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
+                        LAT_KI_BP: Param([0.,25], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
+                        LAT_KI_V: Param([0.0001, 0.0001], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
+                        LAT_KD_BP: Param([0.,25], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
+                        LAT_KD_V: Param([0.0, 0.00], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
+                        LAT_KF: Param(1.8e-5, VT.number, depends_on=SHOW_PID_PARAMS, live=True),
+                        INDI_INNER_LOOP: Param(4.0, VT.number, depends_on=SHOW_INDI_PARAMS, live=True),
+                        INDI_OUTER_LOOP: Param(3.0, VT.number, depends_on=SHOW_INDI_PARAMS, live=True),
+                        INDI_TIME_CONSTANT: Param(1.0, VT.number, depends_on=SHOW_INDI_PARAMS, live=True),
+                        INDI_ACTUATOR_EFFECTIVENESS: Param(1.0, VT.number, depends_on=SHOW_INDI_PARAMS, live=True),
                         SHOW_RATE_PARAMS: Param(False, [bool], live=True),
                         ENABLE_RATE_PARAMS: Param(False, [bool], live=True, depends_on=SHOW_RATE_PARAMS),
                         STOCK_DELTA_UP: Param(12, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
@@ -338,6 +339,8 @@ INDI_TIME_CONSTANT = 'indi_time_constant'
 INDI_ACTUATOR_EFFECTIVENESS = 'indi_actuator_effectiveness'
 
 SHOW_RATE_PARAMS = 'show_rate_params'
+SHOW_INDI_PARAMS = 'show_indi_params'
+SHOW_PID_PARAMS = 'show_pid_params'
 ENABLE_RATE_PARAMS = 'enable_rate_params'
 STOCK_DELTA_UP = 'stock_delta_up'
 STOCK_DELTA_DOWN = 'stock_delta_down'

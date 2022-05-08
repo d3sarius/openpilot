@@ -31,7 +31,8 @@ class CarInterface(CarInterfaceBase):
     
     op_params = opParams()
     lat_params = LatParams(
-      op_params.get('use_indi')
+      op_params.get('use_indi'),
+      op_params.get('use_torque')
     )
 
 

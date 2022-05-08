@@ -5,6 +5,9 @@ from selfdrive.car.chrysler.tunes import LatTunes, set_lat_tune
 from selfdrive.car import STD_CARGO_KG, scale_rot_inertia, scale_tire_stiffness, gen_empty_fingerprint, get_safety_config
 from selfdrive.car.interfaces import CarInterfaceBase
 from common.op_params import opParams
+from collections import namedtuple
+
+LatParams = namedtuple('LatParams', ['use_indi', 'use_torque'])
 
 
 class CarInterface(CarInterfaceBase):
@@ -25,6 +28,11 @@ class CarInterface(CarInterfaceBase):
     ret.steerRateCost = 0.7
     ret.steerLimitTimer = 0.4
     ret.minSteerSpeed = 3.8  # m/s
+    
+    op_params = opParams()
+    lat_params = LatParams(
+      op_params.get('use_indi')
+    )
 
 
     if candidate in (CAR.JEEP_CHEROKEE, CAR.JEEP_CHEROKEE_2019):

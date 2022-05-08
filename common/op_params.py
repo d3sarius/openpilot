@@ -7,6 +7,7 @@ from common.numpy_fast import find_nearest_index, interp, is_multi_iter
 from common.colors import opParams_error as error
 from common.colors import opParams_warning as warning
 from selfdrive.hardware import PC
+from selfdrive.car.chrysler.values import STEER_MAX_LOOKUP, STEER_DELTA_UP, STEER_DELTA_DOWN
 try:
   from common.realtime import sec_since_boot
 except ImportError:
@@ -160,18 +161,20 @@ class opParams:
 
     VT = ValueTypes()
     self.fork_params = {
-                        LAT_KP_BP: Param([0., 35.,], [list, float, int], live=True),
-                        LAT_KP_V: Param([0.28, 0.28], [list, float, int], live=True),
-                        LAT_KI_BP: Param([0.,35], [list, float, int], live=True),
-                        LAT_KI_V: Param([0.06, 0.06], [list, float, int], live=True),
+                        LAT_KP_BP: Param([0., 16.5, 26.8,35.], [list, float, int], live=True),
+                        LAT_KP_V: Param([0.15, 0.1, 0.185, 0.23], [list, float, int], live=True),
+                        LAT_KI_BP: Param([0., 16.5, 26.8,35.], [list, float, int], live=True),
+                        LAT_KI_V: Param([0.015, 0.005, 0.00085, 0.000005], [list, float, int], live=True),
+                        LAT_KD_BP: Param([0.,25.], [list, float, int], live=True),
+                        LAT_KD_V: Param([0., 0.001], [list, float, int], live=True),
                         LAT_KF: Param(6e-6, VT.number, live=True),
-                        
+
                         SHOW_RATE_PARAMS: Param(False, [bool], live=True),
                         ENABLE_RATE_PARAMS: Param(False, [bool], live=True, depends_on=SHOW_RATE_PARAMS),
-                        STOCK_DELTA_UP: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
-                        STOCK_DELTA_DOWN: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
-                        STOCK_STEER_MAX: Param(238, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
-		                  	STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
+                        STOCK_DELTA_UP: Param(14, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
+                        STOCK_DELTA_DOWN: Param(14, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
+                        STOCK_STEER_MAX: Param(360, VT.number, live=True ,depends_on=SHOW_RATE_PARAMS),
+		                  	STEER_ACT_DELAY: Param(0.152, VT.number, live=True)
 }
 
     self._params_file = '/data/op_params.json'
@@ -185,7 +188,7 @@ class opParams:
   def _run_init(self):  # does first time initializing of default params
     # Two required parameters for opEdit
     self.fork_params['username'] = Param(None, [type(None), str, bool], 'Your identifier provided with any crash logs sent to Sentry.\nHelps the developer reach out to you if anything goes wrong')
-    self.fork_params['op_edit_live_mode'] = Param(False, bool, 'This parameter controls which mode opEdit starts in', hidden=True)
+    self.fork_params['op_edit_live_mode'] = Param(False, bool, 'This parameter controls which mode opEdit starts in', hidden=False)
     self.params = self._get_all_params(default=True)  # in case file is corrupted
 
     for k, p in self.fork_params.items():
@@ -320,6 +323,8 @@ LAT_KP_BP = 'lat_kp_bp'
 LAT_KP_V = 'lat_kp_v'
 LAT_KI_BP = 'lat_ki_bp'
 LAT_KI_V = 'lat_ki_v'
+LAT_KD_BP = 'lat_kd_bp'
+LAT_KD_V = 'lat_kd_v'
 LAT_KF = 'lat_kf'
 
 SHOW_RATE_PARAMS = 'show_rate_params'

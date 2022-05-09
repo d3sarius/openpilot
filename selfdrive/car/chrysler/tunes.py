@@ -18,14 +18,14 @@ def set_lat_tune(tune, name, MAX_LAT_ACCEL=3.5, FRICTION=.001):
       tune.torque.friction = FRICTION
     elif name == LatTunes.INDI:
       tune.init('indi')
-      tune.indi.innerLoopGainBP = [0.]
-      tune.indi.innerLoopGainV = [4.0]
-      tune.indi.outerLoopGainBP = [0.]
-      tune.indi.outerLoopGainV = [3.0]
-      tune.indi.timeConstantBP = [0.]
-      tune.indi.timeConstantV = [1.0]
-      tune.indi.actuatorEffectivenessBP = [0.]
-      tune.indi.actuatorEffectivenessV = [1.0]
+      tune.indi.innerLoopGainBP = [0., 25.0]
+      tune.indi.innerLoopGainV = [4.0, 4.0]
+      tune.indi.outerLoopGainBP = [0., 25.0]
+      tune.indi.outerLoopGainV = [3.0, 3.0]
+      tune.indi.timeConstantBP = [0., 25.0]
+      tune.indi.timeConstantV = [1.0, 1.0]
+      tune.indi.actuatorEffectivenessBP = [0., 25.0]
+      tune.indi.actuatorEffectivenessV = [1.0, 1.0]
     elif 'PID' in str(name):
       tune.init('pid')
       tune.pid.kiBP = [0.0, 25.,]

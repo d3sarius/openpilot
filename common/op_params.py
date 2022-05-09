@@ -161,16 +161,20 @@ class opParams:
 
     VT = ValueTypes()
     self.fork_params = {
-                        LAT_KP_BP: Param([0., 35.,], [list, float, int], live=True),
+                        LAT_KP_BP: Param([0., 35.], [list, float, int], live=True),
                         LAT_KP_V: Param([0.28, 0.28], [list, float, int], live=True),
                         LAT_KI_BP: Param([0.,35], [list, float, int], live=True),
                         LAT_KI_V: Param([0.06, 0.06], [list, float, int], live=True),
                         LAT_KD_BP: Param([0.,35], [list, float, int], live=True),
                         LAT_KD_V: Param([0.06, 0.06], [list, float, int], live=True),
                         LAT_KF: Param(6e-6, VT.number, live=True),
+                        INDI_INNER_LOOP_BP: Param([0., 25.], [list, float, int], live=True),
                         INDI_INNER_LOOP: Param(4.0, VT.number, live=True),
+                        INDI_OUTER_LOOP_BP: Param([0.,25], [list, float, int], live=True),
                         INDI_OUTER_LOOP: Param(3.0, VT.number, live=True),
+                        INDI_TIME_CONSTANT_BP: Param([0.,25], [list, float, int], live=True),
                         INDI_TIME_CONSTANT: Param(1.0, VT.number, live=True),
+                        INDI_ACTUATOR_EFFECTIVENESS_BP: Param([0.,25], [list, float, int], live=True),
                         INDI_ACTUATOR_EFFECTIVENESS: Param(1.0, VT.number, live=True),
 
                         SHOW_RATE_PARAMS: Param(False, [bool], live=True),
@@ -331,9 +335,13 @@ LAT_KD_BP = 'lat_kd_bp'
 LAT_KD_V = 'lat_kd_v'
 LAT_KF = 'lat_kf'
 
+INDI_INNER_LOOP_BP = 'indi_inner_loop_bp'
 INDI_INNER_LOOP = 'indi_inner_loop'
+INDI_OUTER_LOOP_BP = 'indi_outer_loop_bp'
 INDI_OUTER_LOOP = 'indi_outer_loop'
+INDI_TIME_CONSTANT_BP = 'indi_time_constant_bp'
 INDI_TIME_CONSTANT = 'indi_time_constant'
+INDI_ACTUATOR_EFFECTIVENESS_BP = 'indi_actuator_effectiveness_bp'
 INDI_ACTUATOR_EFFECTIVENESS = 'indi_actuator_effectiveness'
 
 STEER_RATE_COST = 'steer_rate_cost'

@@ -30,18 +30,18 @@ class LatControlINDI(LatControl):
                   [1.71022442e+01, 3.38495381e-02]])
 
     self.speed = 0.
+    self.op_params = opParams()
 
     self.K = K
     self.A_K = A - np.dot(K, C)
     self.x = np.array([[0.], [0.], [0.]])
 
-    self._RC = (CP.lateralTuning.indi.timeConstantBP, CP.lateralTuning.indi.timeConstantV)
-    self._G = (CP.lateralTuning.indi.actuatorEffectivenessBP, CP.lateralTuning.indi.actuatorEffectivenessV)
-    self._outer_loop_gain = (CP.lateralTuning.indi.outerLoopGainBP, CP.lateralTuning.indi.outerLoopGainV)
-    self._inner_loop_gain = (CP.lateralTuning.indi.innerLoopGainBP, CP.lateralTuning.indi.innerLoopGainV)
+    self._RC = (self.op_params.get(INDI_TIME_CONSTANT_BP), CP.lateralTuning.indi.timeConstantV)
+    self._G = (self.op_params.get(INDI_ACTUATOR_EFFECTIVENESS_BP), CP.lateralTuning.indi.actuatorEffectivenessV)
+    self._outer_loop_gain = (self.op_params.get(INDI_OUTER_LOOP_BP), CP.lateralTuning.indi.outerLoopGainV)
+    self._inner_loop_gain = (self.op_params.get(INDI_INNER_LOOP_BP), CP.lateralTuning.indi.innerLoopGainV)
 
     self.steer_filter = FirstOrderFilter(0., self.RC, DT_CTRL)
-    self.op_params = opParams()
     self.reset()
 
   @property

@@ -35,9 +35,9 @@ class CarInterface(CarInterfaceBase):
 
     if candidate in (CAR.RAM_1500):
       ret.wheelbase = 3.67  # 2021 Ram 1500
-      ret.steerRatio = 16.2  # just a guess
+      ret.steerRatio = 16.3  # just a guess
       ret.mass = 2493. + STD_CARGO_KG  # kg curb weight 2021 Ram 1500
-      set_lat_tune(ret.lateralTuning, LatTunes.TORQUE)
+      set_lat_tune(ret.lateralTuning, LatTunes.INDI)
       ret.steerActuatorDelay = 0.15
       ret.steerRateCost = 1.0
       ret.centerToFront = ret.wheelbase * 0.4 # just a guess

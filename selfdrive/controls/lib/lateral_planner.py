@@ -13,9 +13,9 @@ from common.op_params import opParams, STEER_RATE_COST
 
 class LateralPlanner:
   def __init__(self, CP, use_lanelines=True, wide_camera=False, OP=None):
-     if OP is None:
+    if OP is None:
        OP = opParams()
-     self.op_params = OP
+    self.op_params = OP
     self.use_lanelines = use_lanelines
     self.LP = LanePlanner(wide_camera)
     self.DH = DesireHelper()

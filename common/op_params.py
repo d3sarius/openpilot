@@ -161,12 +161,12 @@ class opParams:
 
     VT = ValueTypes()
     self.fork_params = {
-                        LAT_KP_BP: Param([0., 35.], [list, float, int], live=True),
-                        LAT_KP_V: Param([0.28, 0.28], [list, float, int], live=True),
-                        LAT_KI_BP: Param([0.,35], [list, float, int], live=True),
-                        LAT_KI_V: Param([0.06, 0.06], [list, float, int], live=True),
-                        LAT_KD_BP: Param([0.,35], [list, float, int], live=True),
-                        LAT_KD_V: Param([0.06, 0.06], [list, float, int], live=True),
+                        LAT_KP_BP: Param([0., 35.], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
+                        LAT_KP_V: Param([0.28, 0.28], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
+                        LAT_KI_BP: Param([0.,35], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
+                        LAT_KI_V: Param([0.06, 0.06], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
+                        LAT_KD_BP: Param([0.,35], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
+                        LAT_KD_V: Param([0.06, 0.06], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
                         LAT_KF: Param(6e-6, VT.number, live=True),
                         INDI_INNER_LOOP_BP: Param([0., 25.0], [list, float, int], live=False),
                         INDI_INNER_LOOP: Param([4.0, 4.0], [list, float, int], live=True),
@@ -177,6 +177,7 @@ class opParams:
                         INDI_ACTUATOR_EFFECTIVENESS_BP: Param([0., 25.0], [list, float, int], live=False),
                         INDI_ACTUATOR_EFFECTIVENESS: Param([1.0, 1.0], [list, float, int], live=True),
 
+                        SHOW_PID_PARAMS: Param(False, [bool], live=True),
                         SHOW_RATE_PARAMS: Param(False, [bool], live=True),
                         ENABLE_RATE_PARAMS: Param(False, [bool], live=True, depends_on=SHOW_RATE_PARAMS),
                         STOCK_DELTA_UP: Param(12, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
@@ -326,6 +327,7 @@ class opParams:
         return False
 
 SHOW_INDI_PARAMS = 'show_indi_params'
+SHOW_PID_PARAMS = 'show_pid_params'
 ENABLE_INDI_BREAKPOINTS = 'enable_indi_breakpoints'
 LAT_KP_BP = 'lat_kp_bp'
 LAT_KP_V = 'lat_kp_v'

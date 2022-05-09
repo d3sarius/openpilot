@@ -174,7 +174,7 @@ class opParams:
                         LAT_KF: Param(1.8e-5, VT.number, depends_on=SHOW_PID_PARAMS, live=True),
                         INDI_INNER_LOOP: Param(4.0, VT.number, live=True),
                         INDI_OUTER_LOOP: Param(3.0, VT.number, live=True),
-                        INDI_TIME_CONSTANT: Param(1.0, VT.number, live=True),
+                        'indi_time_constant': Param(1.0, VT.number, live=True),
                         INDI_ACTUATOR_EFFECTIVENESS: Param(1.0, VT.number, live=True),
                         SHOW_RATE_PARAMS: Param(False, [bool], live=True),
                         ENABLE_RATE_PARAMS: Param(False, [bool], live=True, depends_on=SHOW_RATE_PARAMS),

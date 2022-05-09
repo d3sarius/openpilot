@@ -172,16 +172,16 @@ class opParams:
                         LAT_KD_BP: Param([0.,25], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
                         LAT_KD_V: Param([0.0, 0.00], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
                         LAT_KF: Param(1.8e-5, VT.number, depends_on=SHOW_PID_PARAMS, live=True),
-                        INDI_INNER_LOOP: Param(4.0, VT.number, depends_on=SHOW_INDI_PARAMS, live=True),
-                        INDI_OUTER_LOOP: Param(3.0, VT.number, depends_on=SHOW_INDI_PARAMS, live=True),
-                        INDI_TIME_CONSTANT: Param(1.0, VT.number, depends_on=SHOW_INDI_PARAMS, live=True),
-                        INDI_ACTUATOR_EFFECTIVENESS: Param(1.0, VT.number, depends_on=SHOW_INDI_PARAMS, live=True),
+                        INDI_INNER_LOOP: Param(4.0, VT.number, live=True),
+                        INDI_OUTER_LOOP: Param(3.0, VT.number, live=True),
+                        INDI_TIME_CONSTANT: Param(1.0, VT.number, live=True),
+                        INDI_ACTUATOR_EFFECTIVENESS: Param(1.0, VT.number, live=True),
                         SHOW_RATE_PARAMS: Param(False, [bool], live=True),
                         ENABLE_RATE_PARAMS: Param(False, [bool], live=True, depends_on=SHOW_RATE_PARAMS),
                         STOCK_DELTA_UP: Param(12, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
                         STOCK_DELTA_DOWN: Param(12, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
                         STOCK_STEER_MAX: Param(350, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
-		                STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
+		        STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
 }
 
     self._params_file = '/data/op_params.json'

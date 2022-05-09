@@ -161,7 +161,7 @@ class opParams:
 
     VT = ValueTypes()
     self.fork_params = {
-                        'use_indi': Param(False, bool, 'Enable this to use INDI for lat', live=False),
+                        USE_INDI: Param(False, bool, 'Enable this to use INDI for lat', live=False),
                         'use_torque': Param(False, bool, 'Enable this to use torque for lat', live=False),
                         SHOW_INDI_PARAMS: Param(False, [bool], live=True),
                         SHOW_PID_PARAMS: Param(False, [bool], live=True),
@@ -181,7 +181,7 @@ class opParams:
                         STOCK_DELTA_UP: Param(12, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
                         STOCK_DELTA_DOWN: Param(12, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
                         STOCK_STEER_MAX: Param(350, VT.number, live=True, depends_on=SHOW_RATE_PARAMS),
-		        STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
+                        STEER_ACT_DELAY: Param(0.1, VT.number, live=True)
 }
 
     self._params_file = '/data/op_params.json'
@@ -323,6 +323,7 @@ class opParams:
         print("Unable to write file: " + str(e))
         return False
 
+USE_INDI = 'use_indi'
 SHOW_INDI_PARAMS = 'show_indi_params'
 ENABLE_INDI_BREAKPOINTS = 'enable_indi_breakpoints'
 

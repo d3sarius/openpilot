@@ -10,6 +10,7 @@ from common.op_params import opParams
 class CarInterface(CarInterfaceBase):
   @staticmethod
   def get_params(candidate, fingerprint=gen_empty_fingerprint(), car_fw=None, disable_radar=False):
+    op_params = opParams()
     ret = CarInterfaceBase.get_std_params(candidate, fingerprint)
     ret.carName = "chrysler"
     ret.safetyConfigs = [get_safety_config(car.CarParams.SafetyModel.chrysler)]
@@ -25,9 +26,6 @@ class CarInterface(CarInterfaceBase):
     ret.steerRateCost = 0.7
     ret.steerLimitTimer = 0.4
     ret.minSteerSpeed = 3.8  # m/s
-
-    op_params = opParams()
-
 
     if candidate in (CAR.JEEP_CHEROKEE, CAR.JEEP_CHEROKEE_2019):
       ret.wheelbase = 2.91  # in meters
@@ -47,8 +45,6 @@ class CarInterface(CarInterfaceBase):
 
       if op_params.get('use_indi'):
         set_lat_tune(ret.lateralTuning, LatTunes.INDI)
-      elif op_params.get('use_torque'):
-        set_lat_tune(ret.lateralTuning, LatTunes.TORQUE)
       else:
         set_lat_tune(ret.lateralTuning, LatTunes.PID_B)
 

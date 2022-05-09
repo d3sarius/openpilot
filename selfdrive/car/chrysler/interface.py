@@ -7,7 +7,7 @@ from selfdrive.car.interfaces import CarInterfaceBase
 from common.op_params import opParams
 from collections import namedtuple
 
-LatParams = namedtuple('LatParams', ['use_steering_model', 'use_indi', 'use_torque'])
+LatParams = namedtuple('LatParams', ['show_indi_params', 'use_indi', 'use_torque'])
 
 
 class CarInterface(CarInterfaceBase):

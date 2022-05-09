@@ -7,7 +7,7 @@ from selfdrive.car.interfaces import CarInterfaceBase
 from common.op_params import opParams
 from collections import namedtuple
 
-LatParams = namedtuple('LatParams', ['use_indi', 'use_torque'])
+LatParams = namedtuple('LatParams', ['use_steering_model', 'use_indi', 'use_torque'])
 
 
 class CarInterface(CarInterfaceBase):
@@ -28,11 +28,12 @@ class CarInterface(CarInterfaceBase):
     ret.steerRateCost = 0.7
     ret.steerLimitTimer = 0.4
     ret.minSteerSpeed = 3.8  # m/s
-    
+
     op_params = opParams()
     lat_params = LatParams(
-      op_params.get('use_torque'),
-      op_params.get('use_indi')
+      show_indi_params := op_params.get('show_indi_params'),
+      show_indi_params or op_params.get('use_indi'),
+      op_params.get('use_torque')
     )
 
 

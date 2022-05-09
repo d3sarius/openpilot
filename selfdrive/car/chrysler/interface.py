@@ -44,7 +44,15 @@ class CarInterface(CarInterfaceBase):
       ret.minSteerSpeed = 14.5
 
       if op_params.get('use_indi'):
-        set_lat_tune(ret.lateralTuning, LatTunes.INDI)
+        ret.lateralTuning.init('indi')
+        ret.lateralTuning.indi.innerLoopGainBP = [0., 25.0]
+        ret.lateralTuning.indi.innerLoopGainV = [4.0, 4.0]
+        ret.lateralTuning.indi.outerLoopGainBP = [0., 25.0]
+        ret.lateralTuning.indi.outerLoopGainV = [3.0, 3.0]
+        ret.lateralTuning.indi.timeConstantBP = [0., 25.0]
+        ret.lateralTuning.indi.timeConstantV = [1.0, 1.0]
+        ret.lateralTuning.indi.actuatorEffectivenessBP = [0., 25.0]
+        ret.lateralTuning.indi.actuatorEffectivenessV = [1.0, 1.0]
       else:
         set_lat_tune(ret.lateralTuning, LatTunes.PID_B)
 

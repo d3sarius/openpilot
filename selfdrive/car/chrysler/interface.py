@@ -4,7 +4,7 @@ from selfdrive.car.chrysler.values import CAR
 from selfdrive.car.chrysler.tunes import LatTunes, set_lat_tune
 from selfdrive.car import STD_CARGO_KG, scale_rot_inertia, scale_tire_stiffness, gen_empty_fingerprint, get_safety_config
 from selfdrive.car.interfaces import CarInterfaceBase
-from common.op_params import opParams
+from common.op_params import opParams, use_indi
 
 
 class CarInterface(CarInterfaceBase):

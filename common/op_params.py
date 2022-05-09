@@ -167,7 +167,7 @@ class opParams:
                         LAT_KI_V: Param([0.06, 0.06], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
                         LAT_KD_BP: Param([0.,35], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
                         LAT_KD_V: Param([0.06, 0.06], [list, float, int], depends_on=SHOW_PID_PARAMS, live=True),
-                        LAT_KF: Param(6e-6, VT.number, live=True),
+                        LAT_KF: Param(6e-6, VT.number, depends_on=SHOW_PID_PARAMS, live=True),
                         INDI_INNER_LOOP_BP: Param([0., 25.0], [list, float, int], live=False),
                         INDI_INNER_LOOP: Param([4.0, 4.0], [list, float, int], live=True),
                         INDI_OUTER_LOOP_BP: Param([0., 25.0], [list, float, int], live=False),

@@ -37,7 +37,15 @@ class CarInterface(CarInterfaceBase):
       ret.wheelbase = 3.67  # 2021 Ram 1500
       ret.steerRatio = 16.3  # just a guess
       ret.mass = 2493. + STD_CARGO_KG  # kg curb weight 2021 Ram 1500
-      set_lat_tune(ret.lateralTuning, LatTunes.INDI)
+      ret.lateralTuning.init('indi')
+      ret.lateralTuning.indi.innerLoopGainBP = [0., 25.0]
+      ret.lateralTuning.indi.innerLoopGainV = [4.0, 4.0]
+      ret.lateralTuning.indi.outerLoopGainBP = [0., 25.0]
+      ret.lateralTuning.indi.outerLoopGainV = [3.0, 3.0]
+      ret.lateralTuning.indi.timeConstantBP = [0., 25.0]
+      ret.lateralTuning.indi.timeConstantV = [1.0, 1.0]
+      ret.lateralTuning.indi.actuatorEffectivenessBP = [0., 25.0]
+      ret.lateralTuning.indi.actuatorEffectivenessV = [1.0, 1.0]
       ret.steerActuatorDelay = 0.15
       ret.steerRateCost = 1.0
       ret.centerToFront = ret.wheelbase * 0.4 # just a guess

@@ -2,11 +2,11 @@ import math
 import numpy as np
 
 from cereal import log
-from common.op_params import opParams
 from common.filter_simple import FirstOrderFilter
 from common.numpy_fast import clip, interp
 from common.realtime import DT_CTRL
 from selfdrive.controls.lib.latcontrol import LatControl, MIN_STEER_SPEED
+from common.op_params import opParams
 
 
 class LatControlINDI(LatControl):

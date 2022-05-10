@@ -47,7 +47,7 @@ class opParams:
                 "live": True,
             },
             "MAX_ACCEL": {
-                "default": 3.5,
+                "default": 2.5,
                 "clip": [0., 4.],
                 "allowed_types": [float],
                 "live": True,
